@@ -8,6 +8,9 @@
 @endif
 
 <a href="{{ route('alimentos.create') }}">Adicionar Novo Alimento</a>
+<br>
+<a href="{{ route('alimentos.validadeProxima') }}">Alimentos com validade próxima</a>
+
 
 <ul>
 @foreach($alimentos as $alimento)
@@ -23,6 +26,11 @@ style="display:inline;">
 @csrf
 @method('DELETE')
 <button type="submit">Excluir</button>
+ @if($alimento->quantidade <= 5)
+            <span style="color: red; font-weight: bold;">
+                (Estoque Baixo!)
+            </span>
+        @endif
 </form>
 </li>
 @endforeach

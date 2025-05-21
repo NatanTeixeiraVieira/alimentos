@@ -10,3 +10,4 @@ Route::post('/alimentos', [AlimentoController::class, 'store'])->name('alimentos
 Route::get('/alimentos/{alimento}/edit', [AlimentoController::class, 'edit'])->name('alimentos.edit');
 Route::put('/alimentos/{alimento}', [AlimentoController::class, 'update'])->name('alimentos.update');
 Route::delete('/alimentos/{alimento}', [AlimentoController::class, 'destroy'])->name('alimentos.destroy');
+Route::get('/alimentos/validade-proxima', [AlimentoController::class, 'validadeProxima'])->name('alimentos.validadeProxima');

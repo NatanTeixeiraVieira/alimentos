@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Alimento;
+use Carbon\Carbon;
 
 class AlimentoController extends Controller
 {
@@ -55,5 +56,17 @@ public function destroy(Alimento $alimento)
 $alimento->delete();
 
 return redirect()->route('alimentos.index')->with('sucesso', 'Alimento removido!');
+}
+
+public function validadeProxima()
+{
+    $dataLimite = Carbon::now()->addDays(7); // hoje + 7 dias
+
+    $alimentos = Alimento::whereNotNull('validade')
+        ->where('validade', '<=', $dataLimite)
+        ->orderBy('validade', 'asc')
+        ->get();
+
+    return view('alimentos.validade-proxima', compact('alimentos'));
 }
 }
